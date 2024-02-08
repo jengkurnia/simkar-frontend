@@ -14,9 +14,8 @@
           class="appearance-none input-field form-icon-chevron_down"
         >
           <option
-            v-bind:key="company.id"
             :value="company.id"
-            v-for="company in companies.data.result.data"
+            v-elsev-for="company in companies.data.result.data"
           >
             {{ company.name }}
           </option>
@@ -50,8 +49,7 @@ export default {
     }
   },
   async fetch() {
-    const data = await this.$axios.get('/company?limit=100')
-    this.companies = data
+    this.companies = await this.$axios.get('/company?limit=100')
   },
   methods: {
     openCompany() {
