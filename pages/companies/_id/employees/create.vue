@@ -1,17 +1,14 @@
 <template>
   <section class="py-[70px] flex flex-col items-center justify-center px-4">
-    <div class="text-[32px] font-semibold text-dark">Create Employee</div>
-    <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
-      Add your new people to grow the <br />
-      company reaching their goals
-    </p>
+    <div class="text-[32px] font-semibold text-dark">Tambah Karyawan</div>
+    <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey"></p>
     <form
       class="w-full card"
       @submit.prevent="createEmployee"
       enctype="multipart/form-data"
     >
       <div class="form-group">
-        <label for="name" class="text-grey">Name</label>
+        <label for="name" class="text-grey">Nama</label>
         <input
           type="text"
           name="name"
@@ -26,7 +23,7 @@
       </div>
 
       <div class="form-group">
-        <label for="email" class="text-grey">Email Address</label>
+        <label for="email" class="text-grey">Email</label>
         <input
           type="email"
           name="email"
@@ -35,19 +32,19 @@
         />
       </div>
       <div class="form-group">
-        <label for="gender" class="text-grey">Gender</label>
+        <label for="gender" class="text-grey">Jenis Kelamin</label>
         <select
           name="gender"
           v-model="form.gender"
           class="appearance-none input-field form-icon-chevron_down"
         >
-          <option value="MALE" selected>Male</option>
-          <option value="FEMALE">Female</option>
+          <option value="MALE" selected>Laki-laki</option>
+          <option value="FEMALE">Perempuan</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="age" class="text-grey">Age</label>
+        <label for="age" class="text-grey">Umur</label>
         <input
           type="number"
           name="age"
@@ -56,7 +53,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="address" class="text-grey">Address</label>
+        <label for="address" class="text-grey">Alamat</label>
         <input
           type="text"
           name="address"
@@ -65,7 +62,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="education" class="text-grey">Education</label>
+        <label for="education" class="text-grey">Pendidikan</label>
         <input
           type="text"
           name="education"
@@ -74,7 +71,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="phone" class="text-grey">Phone</label>
+        <label for="phone" class="text-grey">Nomor Telepon</label>
         <input
           type="text"
           name="phone"
@@ -83,7 +80,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="date_entry" class="text-grey">Date Entry</label>
+        <label for="date_entry" class="text-grey">Tanggal Masuk</label>
         <input
           type="date"
           name="date_entry"
@@ -92,7 +89,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="year_service" class="text-grey">Year Service</label>
+        <label for="year_service" class="text-grey">Periode Kerja</label>
         <input
           type="date"
           name="year_service"
@@ -101,7 +98,7 @@
         />
       </div>
       <div class="form-group">
-        <label for="position" class="text-grey">Position</label>
+        <label for="position" class="text-grey">Posisi</label>
         <input
           type="text"
           name="position"
@@ -109,8 +106,19 @@
           class="input-field"
         />
       </div>
+
       <div class="form-group">
-        <label for="team_id" class="text-grey">Team</label>
+        <label for="promotion" class="text-grey">Peningkatan Posisi</label>
+        <input
+          type="text"
+          name="promotion"
+          v-model="form.promotion"
+          class="input-field"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="team_id" class="text-grey">Divisi</label>
         <select
           name="team_id"
           v-model="form.team_id"
@@ -123,7 +131,7 @@
       </div>
 
       <div class="form-group">
-        <label for="company_id" class="text-grey">Company</label>
+        <label for="company_id" class="text-grey">Cabang</label>
         <select
           name="company_id"
           v-model="form.company_id"
@@ -136,7 +144,7 @@
       </div>
 
       <div class="form-group">
-        <label for="photo" class="text-grey">Photo</label>
+        <label for="photo" class="text-grey">Foto</label>
         <input
           type="file"
           name="photo"
@@ -165,7 +173,7 @@ export default {
         name: '',
         nik: '',
         email: '',
-        gender: 'MALE',
+        gender: 'LAKI-LAKI',
         age: 0,
         address: '',
         education: '',
@@ -173,6 +181,7 @@ export default {
         date_entry: '',
         year_service: 0,
         position: '',
+        promotion: '',
         team_id: '',
         company_id: '',
       },

@@ -1,26 +1,23 @@
 <template>
   <section class="py-[50px] flex flex-col items-center justify-center px-4">
     <img src="/assets/images/dazzle-logo.png" alt="" />
-    <div class="text-[32px] font-semibold text-dark mt-[70px]">Sign In</div>
-    <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
-      Manage your employees to achieve <br />
-      a bigger goals for your company
-    </p>
+    <div class="text-[32px] font-semibold text-dark mt-[70px]">Masuk</div>
+   
     <form class="w-full card" @submit.prevent="login">
       <div class="form-group">
-        <label for="" class="text-grey">Email Address</label>
+        <label for="" class="text-grey">Email</label>
         <input type="email" class="input-field" v-model="email" />
       </div>
       <div class="form-group">
-        <label for="" class="text-grey">Password</label>
-        <div class="w-full relative">
+        <label for="" class="text-grey">Kata Sandi</label>
+        <div class="relative w-full">
           <input
             :type="showPassword ? 'text' : 'password'"
-            class="input-field w-full"
+            class="w-full input-field"
             v-model="password"
           />
           <svg
-            class="cursor-pointer h-6 w-6 text-gray-500 absolute right-4 top-3"
+            class="absolute w-6 h-6 text-gray-500 cursor-pointer right-4 top-3"
             @click="toggleShowPassword"
             fill="none"
             stroke="currentColor"
@@ -43,7 +40,7 @@
         </div>
       </div>
       <button type="submit" class="w-full btn btn-primary mt-[14px]">
-        Sign In
+        Masuk
       </button>
     </form>
   </section>

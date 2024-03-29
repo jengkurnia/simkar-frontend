@@ -22,17 +22,18 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Employees</div>
+        <div class="text-[32px] font-semibold text-dark">Karyawan</div>
       </div>
+      <br />
       <div class="flex items-center gap-4">
         <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
           <input
             type="text"
             name=""
             id=""
-             v-model="search"
+            v-model="search"
             class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder="Search people"
+            placeholder=""
           />
         </form>
       </div>
@@ -41,22 +42,25 @@
     <!-- Section Header -->
     <div class="mb-[30px]">
       <div
-        class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
-      >
+        class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row">
+        
         <div>
-          <div class="text-xl font-medium text-dark">Statistics</div>
-          <p class="text-grey">Your team powers</p>
+          <div class="text-xl font-medium text-dark"></div>
+          <p class="text-grey"></p>
         </div>
-        <div>
+
+    
+    
+        <div class="flex items-center gap-4">
           <NuxtLink
             :to="{ name: 'companies-id-employees-create' }"
             class="btn btn-primary"
-            >Add Employee</NuxtLink
+            >Tambah Karyawan</NuxtLink
           >
           <NuxtLink
             :to="{ name: 'companies-id-employees-data' }"
             class="btn btn-primary"
-            >View Employee</NuxtLink
+            >Karyawan</NuxtLink
           >
         </div>
       </div>
@@ -65,7 +69,7 @@
       <div class="card !gap-y-10">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-grey">In Total</p>
+            <p class="text-grey">Total</p>
             <div class="text-[32px] font-bold text-dark mt-[6px]">
               {{ statistics.total }}
             </div>
@@ -76,7 +80,7 @@
       <div class="card !gap-y-10">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-grey">Male</p>
+            <p class="text-grey">Laki-laki</p>
             <div class="text-[32px] font-bold text-dark mt-[6px]">
               {{ statistics.male }}
             </div>
@@ -87,7 +91,7 @@
       <div class="card !gap-y-10">
         <div class="flex items-center justify-between">
           <div>
-            <p class="text-grey">Female</p>
+            <p class="text-grey">Perempuan</p>
             <div class="text-[32px] font-bold text-dark mt-[6px]">
               {{ statistics.female }}
             </div>
@@ -101,7 +105,7 @@
       <div class="mb-[30px]">
         <div class="flex items-center justify-between gap-6">
           <div>
-            <div class="text-xl font-medium text-dark">People</div>
+            <div class="text-xl font-medium text-dark">Karyawan</div>
           </div>
         </div>
       </div>
@@ -112,10 +116,11 @@
           :key="employee.id"
           class="items-center card py-6 md:!py-10 md:!px-[38px] !gap-y-0"
         >
-          <a
-            :href="'/companies/:id/employees/data'"
+          <NuxtLink
+            :to="{ name: 'companies-id-employees-data' }"
             class="absolute inset-0 focus:ring-2 ring-primary rounded-[26px]"
-          ></a>
+          ></NuxtLink>
+
           <img
             :src="employee.photo_url || '/default-image.png'"
             width="70"
@@ -161,13 +166,12 @@ export default {
       this.fetchEmployeeData()
     },
 
-
     async fetchEmployeeData() {
       try {
         const company_id = this.$route.params.id
         const response = await this.$axios.get('/employee', {
           params: {
-             ...(this.search ? { name: this.search } : {}),
+            ...(this.search ? { name: this.search } : {}),
             company_id,
           },
         })

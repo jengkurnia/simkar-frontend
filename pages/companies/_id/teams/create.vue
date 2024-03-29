@@ -1,17 +1,14 @@
 <template>
   <section class="py-[70px] flex flex-col items-center justify-center px-4">
-    <div class="text-[32px] font-semibold text-dark">Create Employee</div>
-    <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
-      Add your new people to grow the <br />
-      company reaching their goals
-    </p>
+    <div class="text-[32px] font-semibold text-dark">Tambah Divisi</div>
+   
     <form class="w-full card" @submit.prevent="createTeam">
       <div class="form-group">
-        <label for="name" class="text-grey">Name</label>
+        <label for="name" class="text-grey">Nama</label>
         <input type="text" name="name" v-model="name" class="input-field" />
       </div>
       <div class="form-group">
-        <label for="icon" class="text-grey">Icon</label>
+        <label for="icon" class="text-grey">Ikon</label>
         <input
           type="file"
           name="icon"

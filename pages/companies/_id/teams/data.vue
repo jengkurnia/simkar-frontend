@@ -24,7 +24,7 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Teams</div>
+        <div class="text-[32px] font-semibold text-dark">Divisi</div>
       </div>
      <div class="flex items-center gap-4">
         <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
@@ -34,7 +34,7 @@
             id=""
              v-model="search"
             class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder="Search people"
+            placeholder=""
           />
         </form>
       </div>
@@ -46,8 +46,8 @@
         class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
       >
         <div>
-          <div class="text-xl font-medium text-dark">Available</div>
-          <p class="text-grey">Empower Company</p>
+          <div class="text-xl font-medium text-dark"></div>
+          <p class="text-grey"></p>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@
       <div class="mb-[30px]">
         <div class="flex items-center justify-between gap-6">
           <div>
-            <div class="text-xl font-medium text-dark">Teams</div>
+            <div class="text-xl font-medium text-dark">Divisi</div>
           </div>
         </div>
       </div>

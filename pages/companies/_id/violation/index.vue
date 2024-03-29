@@ -22,30 +22,9 @@
             ></path>
           </svg>
         </a>
-        <div class="text-[32px] font-semibold text-dark">Violation</div>
+        <div class="text-[32px] font-semibold text-dark">Pelanggaran</div>
       </div>
-
-   <!--   <div class="flex items-center gap-4">
-        <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
-          <input
-            type="text"
-            name=""
-            id=""
-            v-model="search"
-            class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder="Search Violation"
-          />
-        </form>
-
-        <a
-          href="#"
-          class="flex-none w-[46px] h-[46px] bg-white rounded-full p-[11px] relative notification-dot"
-        >
-          <img src="/assets/svgs/ic-bell.svg" alt="" />
-        </a>
-      </div> -->
     </section>
-
     <section class="pt-[50px]">
       <!-- Section Header -->
       <div class="mb-[30px]">
@@ -53,19 +32,20 @@
           class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
         >
           <div>
-            <div class="text-xl font-medium text-dark">Available</div>
-            <p class="text-grey">Empower company</p>
+            <div class="text-xl font-medium text-dark"></div>
+            <p class="text-grey"></p>
           </div>
 
           <NuxtLink
             :to="{ name: 'companies-id-violation-create' }"
             class="btn btn-primary"
-            >New Violation</NuxtLink
+            >Tambah Karyawan</NuxtLink
           >
         </div>
       </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
+
         <div class="items-center card !flex-row gap-4">
           <NuxtLink
             :to="{
@@ -78,13 +58,14 @@
           ></NuxtLink>
           <img src="/assets/svgs/ric-flag.svg" alt="" />
           <div>
-            <div class="mb-1 font-semibold text-dark">Violation Letter 1</div>
+            <div class="mb-1 font-semibold text-dark">Teguran Lisan</div>
             <p class="text-grey">
-              {{ violations.find((v) => v.sp === 'SPI')?.employee_count ?? 0 }}
-              people
+              {{ violations.find((v) => v.sp === 'TEGURAN LISAN')?.employee_count ?? 0 }}
+              Karyawan
             </p>
           </div>
         </div>
+        
         <div class="items-center card !flex-row gap-4">
           <NuxtLink
             :to="{
@@ -97,13 +78,14 @@
           ></NuxtLink>
           <img src="/assets/svgs/ric-flag.svg" alt="" />
           <div>
-            <div class="mb-1 font-semibold text-dark">Violation Letter 2</div>
+            <div class="mb-1 font-semibold text-dark">Surat Peringatan 1</div>
             <p class="text-grey">
-              {{ violations.find((v) => v.sp === 'SPII')?.employee_count ?? 0 }}
-              people
+              {{ violations.find((v) => v.sp === 'SPI')?.employee_count ?? 0 }}
+              Karyawan
             </p>
           </div>
         </div>
+
         <div class="items-center card !flex-row gap-4">
           <NuxtLink
             :to="{
@@ -116,12 +98,32 @@
           ></NuxtLink>
           <img src="/assets/svgs/ric-flag.svg" alt="" />
           <div>
-            <div class="mb-1 font-semibold text-dark">Violation Letter 3</div>
+            <div class="mb-1 font-semibold text-dark">Surat Peringatan 2</div>
+            <p class="text-grey">
+              {{ violations.find((v) => v.sp === 'SPII')?.employee_count ?? 0 }}
+              Karyawan
+            </p>
+          </div>
+        </div>
+        
+        <div class="items-center card !flex-row gap-4">
+          <NuxtLink
+            :to="{
+              name: 'companies-id-violation-violationId',
+              params: {
+                violationId: 4,
+              },
+            }"
+            class="absolute inset-0 focus:ring-2 ring-primary rounded-[26px]"
+          ></NuxtLink>
+          <img src="/assets/svgs/ric-flag.svg" alt="" />
+          <div>
+            <div class="mb-1 font-semibold text-dark">Surat Peringatan 3</div>
             <p class="text-grey">
               {{
                 violations.find((v) => v.sp === 'SPIII')?.employee_count ?? 0
               }}
-              people
+              Karyawan
             </p>
           </div>
         </div>
@@ -136,7 +138,6 @@ export default {
 
   data() {
     return {
-
       violations: [],
     }
   },
@@ -146,7 +147,6 @@ export default {
   },
 
   methods: {
-
     handleSearch() {
       this.fetchViolationData()
     },
@@ -156,7 +156,6 @@ export default {
         const company_id = this.$route.params.id
         const response = await this.$axios.get('violation/statistics', {
           params: {
-            
             company_id,
           },
         })

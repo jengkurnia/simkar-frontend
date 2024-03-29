@@ -7,13 +7,13 @@
           name=""
           v-model="search"
           class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-          placeholder="Search people"
+          placeholder=""
         />
       </form>
     </div>
 
     <div class="text-[32px] font-semibold text-dark mt-20">
-      Violation Profile
+      Profil Pelanggaran
     </div>
 
     <div class="overflow-x-auto">
@@ -21,13 +21,13 @@
         <thead>
           <tr class="bg-gray-200">
             <th class="p-3 text-center border border-gray-800">NIK</th>
-            <th class="p-3 text-center border border-gray-800">Name</th>
-            <th class="p-3 text-center border border-gray-800">Position</th>
+            <th class="p-3 text-center border border-gray-800">Nama</th>
+            <th class="p-3 text-center border border-gray-800">Posisi</th>
             <th class="p-3 text-center border border-gray-800">
-              Type Violation
+              Pelanggaran
             </th>
-            <th class="p-3 text-center border border-gray-800">SP</th>
-            <th class="p-3 text-center border border-gray-800">COMPANY</th>
+            <th class="p-3 text-center border border-gray-800">Keterangan</th>
+            <th class="p-3 text-center border border-gray-800">Cabang</th>
             <th class="p-3 text-center border border-gray-800" colspan="2"></th>
           </tr>
         </thead>
@@ -46,9 +46,20 @@
             <td class="p-3 text-center border border-gray-800">
               {{ violation.employees[0].position }}
             </td>
+            
             <td class="p-3 text-center border border-gray-800">
-              {{ violation.typeviolation }}
+               <template v-if="!violation.editingTypeViolation">
+            {{ violation.typeviolation }}
+            </template>
+            <template v-else>
+            <textarea
+                v-model="violation.typeviolation"
+                class="input-field"
+                style="width: 100%; height: 100px;"
+            ></textarea>
+             </template>
             </td>
+
             <td class="p-3 text-center border border-gray-800">
               {{ violation.sp }}
             </td>
@@ -61,7 +72,7 @@
                 @click="editViolationData(violation.id)"
                 class="px-4 py-2 text-white bg-green-500 rounded-md"
               >
-                Edit
+                Ubah
               </button>
             </td>
             <td class="p-3 text-center border border-gray-800">
@@ -69,7 +80,7 @@
                 @click="confirmDelete(violation.id)"
                 class="px-4 py-2 text-white bg-red-500 rounded-md"
               >
-                Delete
+                Hapus
               </button>
             </td>
           </tr>
@@ -81,10 +92,10 @@
     <div v-if="editViolation" class="popup">
       <div class="popup-content">
         <span class="close" @click="closeForm">&times;</span>
-        <h2 class="mb-3 text-lg font-semibold">Edit Violation</h2>
+        <h2 class="mb-3 text-lg font-semibold">Ubah Data Pelanggaran</h2>
         <form class="w-full" @submit.prevent="updateviolation">
           <div class="mb-3 form-group">
-            <label for="employee_id" class="text-grey">Employee</label>
+            <label for="employee_id" class="text-grey">Nama</label>
             <input
               disabled
               type="text"
@@ -94,23 +105,23 @@
             />
           </div>
 
-          <div class="mb-3 form-group">
-            <label for="typeviolation" class="text-grey">Type Violation</label>
-            <input
-              type="text"
-              name="typeviolation"
-              v-model="editViolation.typeviolation"
-              class="input-field"
-            />
-          </div>
+        <div class="mb-3 form-group">
+       <label for="typeviolation" class="text-grey">Pelanggaran</label>
+       <textarea
+        name="typeviolation"
+        v-model="editViolation.typeviolation"
+        class="input-field"
+       ></textarea>
+        </div>
 
           <div class="mb-3 form-group">
-            <label for="sp" class="text-grey">SP</label>
+            <label for="sp" class="text-grey">Keterangan</label>
             <select
               name="sp"
               v-model="editViolation.sp"
               class="appearance-none input-field form-icon-chevron_down"
             >
+              <option value="TEGURAN LISAN">TEGURAN LISAN</option>
               <option value="SPI">SPI</option>
               <option value="SPII">SPII</option>
               <option value="SPIII">SPIII</option>
@@ -118,7 +129,7 @@
           </div>
 
           <button type="submit" class="w-full btn btn-primary mt-[14px]">
-            Save Changes
+            Simpan
           </button>
         </form>
       </div>
@@ -158,16 +169,19 @@ export default {
       try {
         const company_id = this.$route.params.id
         const violation_id = this.$route.params.violationId.toString()
-        let sp = 'SPI'
+        let sp = 'TEGURAN LISAN'
 
         switch (violation_id) {
           case '1':
-            sp = 'SPI'
+            sp = 'TEGURAN LISAN'
             break
           case '2':
-            sp = 'SPII'
+            sp = 'SPI'
             break
           case '3':
+            sp = 'SPII'
+            break
+          case '4':
             sp = 'SPIII'
             break
         }

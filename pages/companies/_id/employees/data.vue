@@ -1,42 +1,46 @@
 <template>
   <section class="flex flex-col items-center justify-center py-10 px-9">
-
-
- <div class="flex items-center gap-4">
-        <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
-          <input
-            type="text"
-            name=""
-            id=""
-             v-model="search"
-            class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder="Search people"
-          />
-        </form>
-      </div>
-
-    <div class="text-[32px] font-semibold text-dark mt-20">
-      Employee Profile
+    <div class="flex items-center gap-4">
+      <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
+        <input
+          type="text"
+          name=""
+          id=""
+          v-model="search"
+          class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
+          placeholder=""
+        />
+      </form>
     </div>
+
+    <div class="text-[32px] font-semibold text-dark mt-20">Profil Karyawan</div>
 
     <div v-if="!showPopup" class="overflow-x-auto">
       <table class="w-full mt-20 border-2 border-collapse border-gray-400">
-
         <thead>
           <tr class="bg-gray-200">
-            <th class="p-3 text-center border border-gray-800">Name</th>
+            <th class="p-3 text-center border border-gray-800">Nama</th>
             <th class="p-3 text-center border border-gray-800">NIK</th>
             <th class="p-3 text-center border border-gray-800">Email</th>
-            <th class="p-3 text-center border border-gray-800">Gender</th>
-            <th class="p-3 text-center border border-gray-800">Age</th>
-            <th class="p-3 text-center border border-gray-800">Address</th>
-            <th class="p-3 text-center border border-gray-800">Education</th>
-            <th class="p-3 text-center border border-gray-800">Phone</th>
-            <th class="p-3 text-center border border-gray-800">Date Entry</th>
-            <th class="p-3 text-center border border-gray-800">Year Service</th>
-            <th class="p-3 text-center border border-gray-800">Position</th>
-            <th class="p-3 text-center border border-gray-800">Team</th>
-            <th class="p-3 text-center border border-gray-800">Company</th>
+            <th class="p-3 text-center border border-gray-800">
+              Jenis Kelamin
+            </th>
+            <th class="p-3 text-center border border-gray-800">Umur</th>
+            <th class="p-3 text-center border border-gray-800">Alamat</th>
+            <th class="p-3 text-center border border-gray-800">Pendidikan</th>
+            <th class="p-3 text-center border border-gray-800">
+              Nomor Telepon
+            </th>
+            <th class="p-3 text-center border border-gray-800">
+              Tanggal Masuk
+            </th>
+            <th class="p-3 text-center border border-gray-800">
+              Periode Kerja
+            </th>
+            <th class="p-3 text-center border border-gray-800">Posisi</th>
+             <th class="p-3 text-center border border-gray-800">Peningkatan Posisi</th>
+            <th class="p-3 text-center border border-gray-800">Divisi</th>
+            <th class="p-3 text-center border border-gray-800">Cabang</th>
             <th class="p-3 text-center border border-gray-800" colspan="2"></th>
           </tr>
         </thead>
@@ -57,7 +61,7 @@
               {{ employee.email }}
             </td>
             <td class="p-3 text-center border border-gray-800">
-              {{ employee.gender }}
+              {{  employee.gender | formatGender }}
             </td>
             <td class="p-3 text-center border border-gray-800">
               {{ employee.age }}
@@ -71,7 +75,7 @@
             <td class="p-3 text-center border border-gray-800">
               {{ employee.phone }}
             </td>
-             <td class="p-3 text-center border border-gray-800">
+            <td class="p-3 text-center border border-gray-800">
               {{ employee.date_entry }}
             </td>
             <td class="p-3 text-center border border-gray-800">
@@ -79,6 +83,9 @@
             </td>
             <td class="p-3 text-center border border-gray-800">
               {{ employee.position }}
+            </td>
+             <td class="p-3 text-center border border-gray-800">
+              {{ employee.promotion }}
             </td>
 
             <td class="p-3 text-center border border-gray-800">
@@ -93,7 +100,7 @@
                 @click="editEmployee = employee"
                 class="px-4 py-2 text-white bg-green-500 rounded-md"
               >
-                Edit
+                Ubah
               </button>
             </td>
             <td class="p-3 text-center border border-gray-800">
@@ -101,7 +108,7 @@
                 @click="confirmDelete(employee.id)"
                 class="px-4 py-2 text-white bg-red-500 rounded-md"
               >
-                Delete
+                Hapus
               </button>
             </td>
           </tr>
@@ -113,11 +120,11 @@
     <div v-if="editEmployee" class="popup">
       <div class="popup-content">
         <span class="close" @click="closeForm">&times;</span>
-        <h2 class="my-6 text-3xl font-semibold text-dark">Edit Employee</h2>
+        <h2 class="my-6 text-3xl font-semibold text-dark">Ubah</h2>
 
         <form @submit.prevent="updateEmployee" class="mt-4">
           <div class="mb-4 form-group">
-            <label for="name" class="text-grey">Name</label>
+            <label for="name" class="text-grey">Nama</label>
             <input
               type="text"
               name="name"
@@ -136,7 +143,7 @@
           </div>
 
           <div class="mb-4 form-group">
-            <label for="email" class="text-grey">Email Address</label>
+            <label for="email" class="text-grey">Email</label>
             <input
               type="email"
               name="email"
@@ -145,18 +152,18 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="gender" class="text-grey">Gender</label>
+            <label for="gender" class="text-grey">Jenis Kelamin</label>
             <select
               name="gender"
               v-model="editEmployee.gender"
               class="appearance-none input-field form-icon-chevron_down"
             >
-              <option value="MALE" selected>Male</option>
-              <option value="FEMALE">Female</option>
+              <option value="MALE" selected>Laki-laki</option>
+              <option value="FEMALE">Perempuan</option>
             </select>
           </div>
           <div class="mb-4 form-group">
-            <label for="age" class="text-grey">Age</label>
+            <label for="age" class="text-grey">Umur</label>
             <input
               type="number"
               name="age"
@@ -165,7 +172,7 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="address" class="text-grey">Address</label>
+            <label for="address" class="text-grey">Alamat</label>
             <input
               type="text"
               name="address"
@@ -174,7 +181,7 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="education" class="text-grey">Education</label>
+            <label for="education" class="text-grey">Pendidikan</label>
             <input
               type="text"
               name="education"
@@ -183,7 +190,7 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="phone" class="text-grey">Phone</label>
+            <label for="phone" class="text-grey">Nomor Telepon</label>
             <input
               type="text"
               name="phone"
@@ -192,7 +199,7 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="date_entry" class="text-grey">Date Entry</label>
+            <label for="date_entry" class="text-grey">Tanggal Masuk</label>
             <input
               type="date"
               name="date_entry"
@@ -201,7 +208,7 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="year_service" class="text-grey">Year Service</label>
+            <label for="year_service" class="text-grey">Periode Kerja</label>
             <input
               type="date"
               name="year_service"
@@ -210,17 +217,25 @@
             />
           </div>
           <div class="mb-4 form-group">
-            <label for="position" class="text-grey">Position</label>
+            <label for="position" class="text-grey">Posisi</label>
             <input
               type="text"
               name="position"
               v-model="editEmployee.position"
-              class="input-field"
-            />
+              class="input-field"/>
+          </div>
+
+           <div class="mb-4 form-group">
+            <label for="promotion" class="text-grey">Peningkatan Posisi</label>
+            <input
+              type="text"
+              name="promotion"
+              v-model="editEmployee.promotion"
+              class="input-field"/>
           </div>
 
           <div class="mb-4 form-group">
-            <label for="team_id" class="text-grey">Team</label>
+            <label for="team_id" class="text-grey">Divisi</label>
             <select
               name="team_id"
               v-model="editEmployee.team_id"
@@ -233,7 +248,7 @@
           </div>
 
           <div class="mb-4 form-group">
-            <label for="company_id" class="text-grey">Company</label>
+            <label for="company_id" class="text-grey">Cabang</label>
             <select
               name="company_id"
               v-model="editEmployee.company_id"
@@ -249,7 +264,7 @@
             type="submit"
             class="px-4 py-2 text-white bg-red-500 rounded-md"
           >
-            Save Changes
+            Simpan
           </button>
         </form>
       </div>
@@ -281,11 +296,19 @@ export default {
         date_entry: '',
         year_service: '',
         position: '',
+        promotion: '',
         team_id: '',
         company_id: '',
       },
     }
   },
+
+   filters: {
+    formatGender(gender) {
+      return gender === 'MALE' ? 'LAKI-LAKI' : gender === 'FEMALE' ? 'PEREMPUAN' : gender;
+    }
+  },
+
   mounted() {
     // Panggil fungsi untuk mengambil data dari API saat komponen dimuat
     this.getDataFromApi()
@@ -293,18 +316,17 @@ export default {
     this.getCompanyData()
   },
   methods: {
+   
+  
 
-  /* computed: {
-   filteredEmployees() {
-      return this.Employees.filter((v) =>
-        v.employees[0].name.toLocaleLowerCase().includes(this.search)
-      )
+    handleSearch() {
+      this.getDataFromApi()
     },
-  },*/
 
-      handleSearch() {
-            this.getDataFromApi()
-          }, 
+
+    formatGender(gender) {
+    return gender === 'MALE' ? 'LAKI-LAKI' : gender === 'FEMALE' ? 'PEREMPUAN' : gender;
+  },
 
     async getDataFromApi() {
       try {

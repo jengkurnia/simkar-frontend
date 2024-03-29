@@ -1,28 +1,15 @@
 <template>
   <section class="py-[70px] flex flex-col items-center justify-center px-4">
-    <div class="text-[32px] font-semibold text-dark">Violation</div>
-    <p class="mt-4 text-base leading-7 text-center mb-[50px] text-grey">
-      Manage your employees to achieve <br />
-      a bigger goals for your company
-    </p>
+    <div class="text-[32px] font-semibold text-dark">Tambah Pelanggaran</div>
+   
     <form
       class="w-full card"
       @submit.prevent="submitViolation"
       enctype="multipart/form-data"
     >
-      <!--<div class="form-group">
-        <label for="name" class="text-grey">Name</label>
-        <input
-          type="text"
-          name="employee_id"
-          v-model="form.employee_id"
-          class="input-field"
-          @input="getEmployeeData"
-        />
-      </div> -->
 
       <div class="form-group">
-        <label for="employee_id" class="text-grey">Employee</label>
+        <label for="employee_id" class="text-grey">Nama</label>
         <select
           name="employee_id"
           v-model="form.employee_id"
@@ -35,14 +22,13 @@
       </div>
 
       <div class="form-group">
-        <label for="typeviolation" class="text-grey">Type Violation</label>
-        <input
-          type="text"
-          name="typeviolation"
-          v-model="form.typeviolation"
-          class="input-field"
-        />
-      </div>
+    <label for="typeviolation" class="text-grey">Pelanggaran</label>
+    <textarea
+        name="typeviolation"
+        v-model="form.typeviolation"
+        class="input-field"
+    ></textarea>
+</div>
 
       <div class="form-group">
         <label for="sp" class="text-grey">SP</label>
@@ -51,6 +37,7 @@
           v-model="form.sp"
           class="appearance-none input-field form-icon-chevron_down"
         >
+         <option value="TEGURAN LISAN" selected>TEGURAN LISAN</option>
           <option value="SPI" selected>SPI</option>
           <option value="SPII" selected>SPII</option>
           <option value="SPIII" selected>SPIII</option>
@@ -58,7 +45,7 @@
       </div>
 
       <button type="submit" class="w-full btn btn-primary mt-[14px]">
-        Submit
+        Simpan
       </button>
     </form>
   </section>
