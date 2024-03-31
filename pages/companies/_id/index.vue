@@ -42,15 +42,13 @@
     <!-- Section Header -->
     <div class="mb-[30px]">
       <div
-        class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row">
-        
+        class="flex flex-col justify-between gap-6 sm:items-center sm:flex-row"
+      >
         <div>
           <div class="text-xl font-medium text-dark"></div>
           <p class="text-grey"></p>
         </div>
 
-    
-    
         <div class="flex items-center gap-4">
           <NuxtLink
             :to="{ name: 'companies-id-employees-create' }"
@@ -178,7 +176,7 @@ export default {
 
         const newEmployeesData = response.data.data.data.map((emp) => {
           let tempPhotoUrl = emp.photo_url?.replace(/^\/storage/, '')
-          const newPhotoUrl = `${process.env.API_URL}/images/${tempPhotoUrl}`
+          const newPhotoUrl = `${this.$config.API_URL}/images/${tempPhotoUrl}`
 
           return {
             ...emp,

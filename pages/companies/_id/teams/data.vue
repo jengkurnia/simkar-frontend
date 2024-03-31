@@ -1,8 +1,6 @@
 <template>
   <!-- Main Content -->
   <div class="lg:pr-[70px] py-[50px] lg:ml-[320px] xl:ml-[365px] px-4 lg:pl-0">
-
-
     <!-- Top Section -->
     <section
       class="flex flex-col flex-wrap justify-between gap-6 md:items-center md:flex-row"
@@ -26,13 +24,13 @@
         </a>
         <div class="text-[32px] font-semibold text-dark">Divisi</div>
       </div>
-     <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4">
         <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
           <input
             type="text"
             name=""
             id=""
-             v-model="search"
+            v-model="search"
             class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
             placeholder=""
           />
@@ -112,11 +110,9 @@ export default {
   },
 
   methods: {
-
-      handleSearch() {
-            this.fetchEmployeeData()
-          },
-
+    handleSearch() {
+      this.fetchEmployeeData()
+    },
 
     async fetchEmployeeData() {
       try {
@@ -133,7 +129,7 @@ export default {
 
         const newEmployeesData = response.data.data.data.map((emp) => {
           let tempPhotoUrl = emp.photo_url?.replace(/^\/storage/, '')
-          const newPhotoUrl = `${process.env.API_URL}/images/${tempPhotoUrl}`
+          const newPhotoUrl = `${this.$config.API_URL}/images/${tempPhotoUrl}`
 
           return {
             ...emp,

@@ -136,7 +136,7 @@ export default {
         if (response) {
           const newTeamsData = response.data.result.data.map((team) => {
             let tempIconUrl = team.icon?.replace(/^public\//, '')
-            const newIconUrl = `${process.env.API_URL}/images/${tempIconUrl}`
+            const newIconUrl = `${this.$config.API_URL}/images/${tempIconUrl}`
 
             return {
               ...team,
