@@ -17,7 +17,7 @@
         />
       </div>
       <button type="submit" class="w-full btn btn-primary mt-[14px]">
-        Continue
+        Selanjutnya
       </button>
     </form>
   </section>
