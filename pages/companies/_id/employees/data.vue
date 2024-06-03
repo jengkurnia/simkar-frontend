@@ -12,7 +12,7 @@
         />
       </form>
     </div>
-
+ 
     <div class="text-[32px] font-semibold text-dark mt-20">Profil Karyawan</div>
 
     <div v-if="!showPopup" class="overflow-x-auto">

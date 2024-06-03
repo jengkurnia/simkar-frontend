@@ -11,7 +11,7 @@
         />
       </form>
     </div>
-
+ 
     <div class="text-[32px] font-semibold text-dark mt-20">
       Profil Pelanggaran
     </div>
