@@ -348,7 +348,7 @@ export default {
     async updateEmployee() {
       try {
         const response = await this.$axios.post(
-          `http://localhost:8000/api/employee/update/${this.editEmployee.id}`,
+          `/employee/update/${this.editEmployee.id}`,
           this.editEmployee
         )
 
@@ -423,7 +423,7 @@ export default {
     async deleteEmployee(employeeId) {
       try {
         await this.$axios.delete(
-          `http://localhost:8000/api/employee/delete/${employeeId}`
+          `/employee/delete/${employeeId}`
         )
 
         // Instead of reloading the entire page, you can remove the deleted employee from the local data
