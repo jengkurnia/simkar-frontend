@@ -25,7 +25,7 @@
         <div class="text-[32px] font-semibold text-dark">Divisi</div>
       </div>
       <div class="flex items-center gap-4">
-        <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
+        <form class="shrink md:w-[516px] w-full" @input="handleSearch">
           <input
             type="text"
             name=""
@@ -124,6 +124,19 @@ export default {
     handleSearch() {
       this.fetchTeamData()
     },
+
+
+    computed: {
+    filteredTeams() {
+      if (this.data.data) {
+        return this.data.data.filter((v) =>
+        v.name.toLocaleLowerCase().includes(this.search)
+        )
+    }
+      
+     
+    },
+  },
 
     async fetchTeamData() {
       try {

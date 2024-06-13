@@ -47,7 +47,7 @@
 
         <tbody>
           <tr
-            v-for="(employee, index) in data.data || []"
+            v-for="(employee, index) in filteredEmployee || []"
             :key="employee.id"
             class="bg-white"
           >
@@ -315,6 +315,19 @@ export default {
     this.getTeamData()
     this.getCompanyData()
   },
+
+  computed: {
+    filteredEmployee() {
+      if (this.data.data) {
+        return this.data.data.filter((v) =>
+        v.name.toLocaleLowerCase().includes(this.search)
+        )
+    }
+      
+     
+    },
+  },
+
   methods: {
    
   
@@ -480,12 +493,12 @@ export default {
 
 .popup-content {
   background-color: #fefefe;
-  padding: 20px;
+  padding: 50px;
   border: 1px solid #888;
   width: 500%;
   max-width: 800px;
   overflow: auto;
-  margin-top: 500px;
+  margin-top: 600px;
 }
 
 .close {

@@ -6,16 +6,36 @@
         <label for="" class="text-grey">Cabang</label>
 
         <p v-if="$fetchState.pending">Mengambil cabang...</p>
-        <div v-else class="h-full"> <!-- Menambahkan ketinggian penuh pada container -->
-          <div v-for="(company, index) in companies.data.result.data" :key="company.id">
-            <button @click="selectCompany(company.id)" class="w-full btn btn-primary mt-[14px]">{{ company.name }}</button>
-          </div>
-        </div>
+        <select
+          v-else
+          v-model="selectedCompany"
+          name="companies"
+          id=""
+          class="appearance-none input-field form-icon-chevron_down"
+        >
+          <option
+            :value="company.id"
+            v-for="company in companies.data.result.data"
+            :key="company.id"
+          >
+            {{ company.name }}
+          </option>
+        </select>
       </div>
-      <div class="flex justify-between items-center mt-[14px]">
-        <button @click="cancel()" class="btn btn-secondary">Kembali</button>
-        <NuxtLink :to="{ name: 'companies-create' }" class="border btn btn-white">Buat Cabang Baru</NuxtLink>
-      </div>
+      <button
+        @click="openCompany()"
+        type="button"
+        class="w-full btn btn-primary mt-[14px]"
+      >
+        Lanjutkan
+      </button>
+      <div class="text-center">atau</div>
+      <NuxtLink
+        :to="{ name: 'companies-create' }"
+        class="w-full border btn btn-white"
+      >
+        Buat Cabang Baru
+      </NuxtLink>
     </div>
   </section>
 </template>
@@ -34,11 +54,11 @@ export default {
     this.companies = data
   },
   methods: {
-    selectCompany(companyId) {
+    openCompany() {
       this.$router.push({
         name: 'companies-id',
         params: {
-          id: companyId,
+          id: this.selectedCompany,
         },
       })
     },

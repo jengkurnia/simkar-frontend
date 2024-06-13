@@ -15,20 +15,30 @@
           v-model="form.employee_id"
           class="appearance-none input-field form-icon-chevron_down"
         >
-          <option v-for="employee in employee_data" :value="employee.id">
+          <option v-for="employee in employee_data" :key="employee.id" :value="employee.id">
             {{ employee.name }}
           </option>
         </select>
       </div>
 
       <div class="form-group">
-    <label for="typeviolation" class="text-grey">Pelanggaran</label>
-    <textarea
-        name="typeviolation"
-        v-model="form.typeviolation"
-        class="input-field"
-    ></textarea>
-</div>
+        <label for="typeviolation" class="text-grey">Pelanggaran</label>
+        <textarea
+          name="typeviolation"
+          v-model="form.typeviolation"
+          class="rounded-[24px] input-field"
+        ></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="date" class="text-grey">Tanggal Pelanggaran</label>
+        <input
+          type="date"
+          name="date"
+          v-model="form.date"
+          class="input-field"
+        />
+      </div>
 
       <div class="form-group">
         <label for="sp" class="text-grey">SP</label>
@@ -37,10 +47,10 @@
           v-model="form.sp"
           class="appearance-none input-field form-icon-chevron_down"
         >
-         <option value="TEGURAN LISAN" selected>TEGURAN LISAN</option>
-          <option value="SPI" selected>SPI</option>
-          <option value="SPII" selected>SPII</option>
-          <option value="SPIII" selected>SPIII</option>
+          <option value="TEGURAN LISAN">TEGURAN LISAN</option>
+          <option value="SPI">SPI</option>
+          <option value="SPII">SPII</option>
+          <option value="SPIII">SPIII</option>
         </select>
       </div>
 
@@ -50,6 +60,7 @@
     </form>
   </section>
 </template>
+
 
 <script>
 export default {
@@ -64,6 +75,7 @@ export default {
         employee_id: '',
         typeviolation: '',
         sp: '',
+        date: '',
       },
     }
   },

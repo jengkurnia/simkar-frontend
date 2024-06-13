@@ -23,9 +23,8 @@
             <th class="p-3 text-center border border-gray-800">NIK</th>
             <th class="p-3 text-center border border-gray-800">Nama</th>
             <th class="p-3 text-center border border-gray-800">Posisi</th>
-            <th class="p-3 text-center border border-gray-800">
-              Pelanggaran
-            </th>
+            <th class="p-3 text-center border border-gray-800">Pelanggaran</th>
+            <th class="p-3 text-center border border-gray-800">Tanggal Pelanggaran</th>
             <th class="p-3 text-center border border-gray-800">Keterangan</th>
             <th class="p-3 text-center border border-gray-800">Cabang</th>
             <th class="p-3 text-center border border-gray-800" colspan="2"></th>
@@ -34,7 +33,7 @@
         <tbody>
           <tr
             v-for="violation in filteredViolations"
-            :key="id"
+            :key="violation.id"
             class="bg-white"
           >
             <td class="p-3 text-center border border-gray-800">
@@ -46,27 +45,38 @@
             <td class="p-3 text-center border border-gray-800">
               {{ violation.employees[0].position }}
             </td>
+            <td class="p-3 text-center border border-gray-800">
+              <template v-if="!violation.editingTypeViolation">
+                {{ violation.typeviolation }}
+              </template>
+              <template v-else>
+                <textarea
+                  v-model="violation.typeviolation"
+                  class="input-field"
+                  style="width: 100%; height: 100px;"
+                ></textarea>
+              </template>
+            </td>
             
             <td class="p-3 text-center border border-gray-800">
-               <template v-if="!violation.editingTypeViolation">
-            {{ violation.typeviolation }}
-            </template>
-            <template v-else>
-            <textarea
-                v-model="violation.typeviolation"
-                class="input-field"
-                style="width: 100%; height: 100px;"
-            ></textarea>
-             </template>
+              <template v-if="!violation.editingDate">
+                {{ violation.date }}
+              </template>
+              <template v-else>
+                <input
+                  type="date"
+                  v-model="violation.date"
+                  class="input-field"
+                  style="width: 100%;"
+                />
+              </template>
             </td>
-
             <td class="p-3 text-center border border-gray-800">
               {{ violation.sp }}
             </td>
             <td class="p-3 text-center border border-gray-800">
               {{ violation.company_name }}
             </td>
-
             <td class="p-3 text-center border border-gray-800">
               <button
                 @click="editViolationData(violation.id)"
@@ -105,17 +115,27 @@
             />
           </div>
 
-        <div class="mb-3 form-group">
-       <label for="typeviolation" class="text-grey">Pelanggaran</label>
-       <textarea
-        name="typeviolation"
-        v-model="editViolation.typeviolation"
-        class="input-field"
-       ></textarea>
-        </div>
+          <div class="mb-3 form-group">
+            <label for="typeviolation" class="text-grey">Keterangan</label>
+            <textarea
+              name="typeviolation"
+              v-model="editViolation.typeviolation"
+              class="rounded-[24px] input-field"
+            ></textarea>
+          </div>
 
           <div class="mb-3 form-group">
-            <label for="sp" class="text-grey">Keterangan</label>
+            <label for="date" class="text-grey">Tanggal Pelanggaran</label>
+            <input
+              type="date"
+              name="date"
+              v-model="editViolation.date"
+              class="input-field"
+            />
+          </div>
+
+         <div class="mb-3 form-group">
+            <label for="sp" class="text-grey">Pelanggaran</label>
             <select
               name="sp"
               v-model="editViolation.sp"
@@ -127,6 +147,7 @@
               <option value="SPIII">SPIII</option>
             </select>
           </div>
+          
 
           <button type="submit" class="w-full btn btn-primary mt-[14px]">
             Simpan
@@ -136,6 +157,7 @@
     </div>
   </section>
 </template>
+
 
 <script>
 export default {
@@ -190,6 +212,7 @@ export default {
           params: {
             company_id,
             sp,
+          
           },
         })
 
@@ -227,6 +250,7 @@ export default {
             {
               typeviolation: this.editViolation.typeviolation,
               sp: this.editViolation.sp,
+              date: this.editViolation.date,
             }
           )
 
@@ -337,7 +361,7 @@ export default {
   border: 1px solid #888;
   width: 800%;
   max-width: 400px;
-  margin-top: 50px;
+  margin-top: 0px;
 }
 
 .close {

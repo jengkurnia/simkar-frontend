@@ -3,6 +3,8 @@
     <img src="/assets/images/dazzle-logo.png" alt="" />
     <div class="text-[32px] font-semibold text-dark mt-[70px]">Masuk</div>
    
+
+
     <form class="w-full card" @submit.prevent="login">
       <div class="form-group">
         <label for="" class="text-grey">Email</label>
@@ -43,6 +45,22 @@
         Masuk
       </button>
     </form>
+
+    <div v-if="showErrorPopup" class="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+  <div class="flex flex-col items-center w-full max-w-sm p-4 bg-white rounded-lg shadow-lg">
+    <div class="mb-4 text-6xl font-bold text-red-500">
+      !
+    </div>
+        <div class="mb-4 text-gray-700">
+          {{ errorMessage }}
+        </div>
+        <button @click="closeErrorPopup" class="w-full btn btn-primary">
+          OK
+        </button>
+      </div>
+    </div>
+
+
   </section>
 </template>
 
@@ -55,6 +73,8 @@ export default {
       email: '',
       password: '',
       showPassword: false,
+      showErrorPopup: false, 
+      errorMessage: '', 
     }
   },
 
@@ -64,20 +84,26 @@ export default {
     },
 
     async login() {
-      try {
-        const response = await this.$auth.loginWith('local', {
-          data: {
-            email: this.email,
-            password: this.password,
-          },
-        })
-        if (response) {
-          this.$router.push({ path: '/' })
-        }
-      } catch (err) {
-        console.error(err)
+    try {
+      const response = await this.$auth.loginWith('local', {
+        data: {
+          email: this.email,
+          password: this.password,
+        },
+      })
+      if (response) {
+        this.$router.push({ path: '/' })
       }
-    },
+    } catch (err) {
+      console.error(err)
+      this.errorMessage = 'Email atau password yang anda masukkan salah !' 
+      this.showErrorPopup = true 
+    }
   },
+
+  closeErrorPopup() {
+    this.showErrorPopup = false
+  }
+},
 }
 </script>

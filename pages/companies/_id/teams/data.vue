@@ -67,10 +67,7 @@
           v-if="selectedTeamIds.includes(employee.team_id)"
           class="items-center card py-6 md:!py-10 md:!px-[38px] !gap-y-0"
         >
-          <a
-            :href="''"
-            class="absolute inset-0 focus:ring-2 ring-primary rounded-[26px]"
-          ></a>
+          
           <img
             :src="
               employee.photo_url ??

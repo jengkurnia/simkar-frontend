@@ -26,7 +26,7 @@
       </div>
       <br />
       <div class="flex items-center gap-4">
-        <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
+        <form class="shrink md:w-[516px] w-full" @input="handleSearch">
           <input
             type="text"
             name=""
@@ -158,6 +158,19 @@ export default {
     this.fetchEmployeeData()
     this.getEmployeeStatistics()
   },
+
+  computed: {
+    filteredEmployee() {
+      if (this.data.data) {
+        return this.data.data.filter((v) =>
+        v.name.toLocaleLowerCase().includes(this.search)
+        )
+    }
+      
+     
+    },
+  },
+
 
   methods: {
     handleSearch() {
