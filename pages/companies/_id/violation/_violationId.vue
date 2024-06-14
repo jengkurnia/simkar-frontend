@@ -23,9 +23,9 @@
             <th class="p-3 text-center border border-gray-800">NIK</th>
             <th class="p-3 text-center border border-gray-800">Nama</th>
             <th class="p-3 text-center border border-gray-800">Posisi</th>
-            <th class="p-3 text-center border border-gray-800">Pelanggaran</th>
-            <th class="p-3 text-center border border-gray-800">Tanggal Pelanggaran</th>
             <th class="p-3 text-center border border-gray-800">Keterangan</th>
+            <th class="p-3 text-center border border-gray-800">Tanggal Pelanggaran</th>
+            <th class="p-3 text-center border border-gray-800">Pelanggaran</th>
             <th class="p-3 text-center border border-gray-800">Cabang</th>
             <th class="p-3 text-center border border-gray-800" colspan="2"></th>
           </tr>

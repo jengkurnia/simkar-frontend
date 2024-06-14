@@ -39,7 +39,7 @@
           <NuxtLink
             :to="{ name: 'companies-id-violation-create' }"
             class="btn btn-primary"
-            >Tambah Karyawan</NuxtLink
+            >Tambah Data Pelanggaran</NuxtLink
           >
         </div>
       </div>

@@ -1,6 +1,6 @@
 <template>
   <section class="py-[70px] flex flex-col items-center justify-center px-4">
-    <div class="text-[32px] font-semibold text-dark">Tambah Pelanggaran</div>
+    <div class="text-[32px] font-semibold text-dark">Tambah  Data Pelanggaran</div>
    
     <form
       class="w-full card"
@@ -22,7 +22,7 @@
       </div>
 
       <div class="form-group">
-        <label for="typeviolation" class="text-grey">Pelanggaran</label>
+        <label for="typeviolation" class="text-grey">Keterangan</label>
         <textarea
           name="typeviolation"
           v-model="form.typeviolation"
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form-group">
-        <label for="sp" class="text-grey">SP</label>
+        <label for="sp" class="text-grey">Pelanggaran</label>
         <select
           name="sp"
           v-model="form.sp"
