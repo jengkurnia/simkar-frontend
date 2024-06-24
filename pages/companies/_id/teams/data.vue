@@ -25,14 +25,14 @@
         <div class="text-[32px] font-semibold text-dark">Divisi</div>
       </div>
       <div class="flex items-center gap-4">
-        <form class="shrink md:w-[516px] w-full" @submit.prevent="handleSearch">
+        <form class="shrink md:w-[516px] w-full" @input="handleSearch">
           <input
             type="text"
             name=""
             id=""
             v-model="search"
             class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder=""
+            placeholder="Cari Karyawan"
           />
         </form>
       </div>
@@ -106,6 +106,7 @@ export default {
     this.fetchEmployeeData()
   },
 
+  
   methods: {
     handleSearch() {
       this.fetchEmployeeData()

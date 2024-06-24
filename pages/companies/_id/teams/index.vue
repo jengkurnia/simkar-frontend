@@ -32,7 +32,7 @@
             id=""
             v-model="search"
             class="input-field !outline-none !border-none italic form-icon-search ring-indigo-200 focus:ring-2 transition-all duration-300 w-full"
-            placeholder=""
+            placeholder="Cari Divisi"
           />
         </form>
       </div>
@@ -93,7 +93,7 @@
             {{ team.name }}
           </div>
           <p class="text-center text-grey">
-            {{ statistics.find((s) => s.id === team.id)?.employees_count ?? 0 }}
+            {{ statistics.find((s) => s.id === team.id)?.employees_count ?? 0  }} Karyawan
           </p>
 
           <div class="mt-[30px] text-success flex items-center gap-[6px]"></div>
